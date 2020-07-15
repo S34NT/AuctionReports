@@ -21,10 +21,10 @@ class InspectionViewController : UIViewController{
     
     var alertController: UIAlertController?
     
-    var carsTable: ViewController?
+    var carsTable: ViewController? //holds the viewcontroller that is connected to the
+                                   //list of uninspected cars.
     
-    
-    
+
     @IBOutlet weak var commentsAlert: UIButton!
     
     //This is the popup that shows when you click the label button
@@ -50,6 +50,9 @@ class InspectionViewController : UIViewController{
         
     }
     
+    
+    
+    //defining how the numbered buttons function
     @IBOutlet weak var rating1: UIButton!
     
     @IBAction func rating1(_ sender: UIButton) {
@@ -156,7 +159,7 @@ class InspectionViewController : UIViewController{
     @IBOutlet weak var continueButton: UIButton!
     @IBAction func continueButton(_ sender: Any) {
         
-    //Check which button was selected before continuing to the next page
+        //Check which button was selected before continuing to the next page
         print(self.commentsList![page]! as Any)
         
         if(rating1.isSelected){
@@ -177,43 +180,25 @@ class InspectionViewController : UIViewController{
         }else{
             return
         }
-        
-//        if(greenHexButton.isSelected){
-//            _ = checkList!.updateValue(1, forKey: page)
-//            print(self.checkList![page]! as Any)
-//            page += 1
-//        }else if(yellowHexButton.isSelected){
-//            _ = checkList!.updateValue(2, forKey: page)
-//            print(self.checkList![page]! as Any)
-//             page += 1
-//        }else if(redHexButton.isSelected){
-//            _ = checkList!.updateValue(3, forKey: page)
-//            print(self.checkList![page]! as Any)
-//             page += 1
-//
-//        }else{
-//            return
-//        }
+  
         
         //create identifier for the next segue by inserting the page number
-         var identifier = "InspectionSegue"
-         let index = identifier.index(identifier.startIndex, offsetBy: 10)
+        var identifier = "InspectionSegue"
+        let index = identifier.index(identifier.startIndex, offsetBy: 10)
              identifier.insert(contentsOf: "\(page)", at: index)
              print(identifier)
          
          //If it is not the last inspection modal, segue to the next.
         if(identifier != "Inspection12Segue"){
-         
             self.performSegue(withIdentifier:identifier, sender: self)
         }else{
             
-      
+            //Send the data off to the database and unwind back to the list of uninspected cars
             let sendData = sendtoDB()
             sendData.exportData(selectedCar: self.selectedCar, checkList:
             self.checkList!,commentsList: self.commentsList!)
             
             self.performSegue(withIdentifier:"unwindToCars", sender:self)
-           
     }
         
     }
@@ -225,8 +210,8 @@ class InspectionViewController : UIViewController{
 
             // Get reference to the destination view controller
             let inspectionVC = segue.destination as? InspectionViewController
-            // Set the property to the selected location so when the view for
-            // detail view controller loads, it can access that property to get the feeditem object
+        
+            // Pass along the properties to the next InspectionViewController
             inspectionVC?.selectedCar = self.selectedCar
             inspectionVC?.checkList = self.checkList
             inspectionVC?.commentsList = self.commentsList
@@ -239,6 +224,7 @@ class InspectionViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //define the button properties for the numbered buttons
         rating1.setImage(UIImage(systemName:"1.circle"), for: .normal)
         rating1.setImage(UIImage(systemName:"1.circle.fill"), for: .selected)
         rating1.addTarget(self, action: #selector(getter: self.rating1), for: UIControl.Event.touchUpInside)
@@ -260,36 +246,10 @@ class InspectionViewController : UIViewController{
         rating5.setImage(UIImage(systemName:"5.circle.fill"), for: .selected)
         rating5.addTarget(self, action: #selector(getter: self.rating5), for: UIControl.Event.touchUpInside)
         
-        //Initialize the color buttons on the page. Check if one has already been selected
-        //STILL NEED TO ADD DELEGATE METHOD
-//        greenHexButton.setImage(UIImage(systemName:"hexagon"), for: .normal)
-//        greenHexButton.setImage(UIImage(systemName:"hexagon.fill"), for: .selected)
-//        greenHexButton.addTarget(self, action: #selector(getter: self.greenHexButton), for: UIControl.Event.touchUpInside)
-//        if(checkList![page]! == 1){
-//            greenHexButton.isSelected = true
-//        }
-//
-//
-//        yellowHexButton.setImage(UIImage(systemName:"hexagon"), for: .normal)
-//        yellowHexButton.setImage(UIImage(systemName:"hexagon.fill"), for: .selected)
-//        yellowHexButton.addTarget(self, action: #selector(getter: self.yellowHexButton), for: UIControl.Event.touchUpInside)
-//        if(checkList![page]! == 2){
-//            print("bitchass")
-//            yellowHexButton.isSelected = true
-//        }
-//
-//
-//        redHexButton.setImage(UIImage(systemName:"hexagon"), for: .normal)
-//        redHexButton.setImage(UIImage(systemName:"hexagon.fill"), for: .selected)
-//        redHexButton.addTarget(self, action: #selector(getter: self.redHexButton), for: UIControl.Event.touchUpInside)
-//        if(checkList![page]! == 3){
-//            redHexButton.isSelected = true
-//        }
-        
-        //continueButton.layer.cornerRadius = 4
         
         }
     
+    //decrement the page number when dismissing a modal
     override func viewDidDisappear(_ animated: Bool) {
         if(page != 1){
            
