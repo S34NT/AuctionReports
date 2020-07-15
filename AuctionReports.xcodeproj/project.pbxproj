@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253CDCA824B9EEB400CE55C6 /* sendtoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253CDCA724B9EEB400CE55C6 /* sendtoDB.swift */; };
 		25EC9F2A24A809A800804672 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F2924A809A800804672 /* AppDelegate.swift */; };
 		25EC9F2C24A809A800804672 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F2B24A809A800804672 /* SceneDelegate.swift */; };
 		25EC9F2E24A809A800804672 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F2D24A809A800804672 /* ViewController.swift */; };
@@ -15,6 +16,10 @@
 		25EC9F3624A809AC00804672 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25EC9F3424A809AC00804672 /* LaunchScreen.storyboard */; };
 		25EC9F4124A809AD00804672 /* AuctionReportsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F4024A809AD00804672 /* AuctionReportsTests.swift */; };
 		25EC9F4C24A809AD00804672 /* AuctionReportsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F4B24A809AD00804672 /* AuctionReportsUITests.swift */; };
+		25EC9F5C24AA141A00804672 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F5B24AA141A00804672 /* HomeModel.swift */; };
+		25EC9F5E24AA146C00804672 /* UncheckedCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F5D24AA146C00804672 /* UncheckedCarsModel.swift */; };
+		25EC9F6024AA83E900804672 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F5F24AA83E900804672 /* DetailViewController.swift */; };
+		25EC9F6224AE4CBE00804672 /* InspectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F6124AE4CBE00804672 /* InspectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		253CDCA724B9EEB400CE55C6 /* sendtoDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sendtoDB.swift; sourceTree = "<group>"; };
 		25EC9F2624A809A800804672 /* AuctionReports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuctionReports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EC9F2924A809A800804672 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EC9F2B24A809A800804672 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,10 @@
 		25EC9F4724A809AD00804672 /* AuctionReportsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuctionReportsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EC9F4B24A809AD00804672 /* AuctionReportsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionReportsUITests.swift; sourceTree = "<group>"; };
 		25EC9F4D24A809AD00804672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25EC9F5B24AA141A00804672 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		25EC9F5D24AA146C00804672 /* UncheckedCarsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncheckedCarsModel.swift; sourceTree = "<group>"; };
+		25EC9F5F24AA83E900804672 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		25EC9F6124AE4CBE00804672 /* InspectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +116,11 @@
 				25EC9F3224A809AC00804672 /* Assets.xcassets */,
 				25EC9F3424A809AC00804672 /* LaunchScreen.storyboard */,
 				25EC9F3724A809AC00804672 /* Info.plist */,
+				25EC9F5B24AA141A00804672 /* HomeModel.swift */,
+				253CDCA724B9EEB400CE55C6 /* sendtoDB.swift */,
+				25EC9F5D24AA146C00804672 /* UncheckedCarsModel.swift */,
+				25EC9F5F24AA83E900804672 /* DetailViewController.swift */,
+				25EC9F6124AE4CBE00804672 /* InspectionViewController.swift */,
 			);
 			path = AuctionReports;
 			sourceTree = "<group>";
@@ -259,9 +274,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25EC9F5E24AA146C00804672 /* UncheckedCarsModel.swift in Sources */,
+				25EC9F5C24AA141A00804672 /* HomeModel.swift in Sources */,
 				25EC9F2E24A809A800804672 /* ViewController.swift in Sources */,
+				25EC9F6024AA83E900804672 /* DetailViewController.swift in Sources */,
+				253CDCA824B9EEB400CE55C6 /* sendtoDB.swift in Sources */,
 				25EC9F2A24A809A800804672 /* AppDelegate.swift in Sources */,
 				25EC9F2C24A809A800804672 /* SceneDelegate.swift in Sources */,
+				25EC9F6224AE4CBE00804672 /* InspectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +324,7 @@
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		25EC9F3424A809AC00804672 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
