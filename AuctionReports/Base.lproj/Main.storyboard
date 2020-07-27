@@ -1815,7 +1815,7 @@
             <objects>
                 <viewController id="HuV-RU-QqA" customClass="InspectionDetailViewController" customModule="AuctionReports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fxg-2r-eV7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1472"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="YyR-cD-72w">
@@ -1885,46 +1885,19 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deA-zP-LP2">
-                                <rect key="frame" x="0.0" y="383" width="414" height="700"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghs-0g-8cT">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="414" id="UgP-gE-y9P"/>
-                                            <constraint firstAttribute="height" constant="700" id="sLe-dc-DFq"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="700" id="4O4-Uo-kBW"/>
-                                    <constraint firstItem="ghs-0g-8cT" firstAttribute="bottom" secondItem="y6g-8L-j1K" secondAttribute="bottom" id="Ds0-Fs-3Zq"/>
-                                    <constraint firstAttribute="width" constant="414" id="Lal-5U-o7q"/>
-                                    <constraint firstItem="ghs-0g-8cT" firstAttribute="top" secondItem="y6g-8L-j1K" secondAttribute="top" id="bUb-H1-V47"/>
-                                    <constraint firstItem="ghs-0g-8cT" firstAttribute="leading" secondItem="y6g-8L-j1K" secondAttribute="leading" id="mzl-uQ-SuX"/>
-                                    <constraint firstItem="y6g-8L-j1K" firstAttribute="trailing" secondItem="ghs-0g-8cT" secondAttribute="trailing" id="vzY-oh-gyO"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="zaW-Rf-R19"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="y6g-8L-j1K"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="deA-zP-LP2" firstAttribute="leading" secondItem="03F-de-LK8" secondAttribute="leading" id="Dcw-8j-1T8"/>
-                            <constraint firstItem="deA-zP-LP2" firstAttribute="trailing" secondItem="03F-de-LK8" secondAttribute="trailing" id="IlO-Ye-H81"/>
                             <constraint firstItem="VlR-1f-WNy" firstAttribute="top" secondItem="YyR-cD-72w" secondAttribute="bottom" constant="42.333335876464844" id="Txh-3Z-4EI"/>
                             <constraint firstItem="03F-de-LK8" firstAttribute="trailing" secondItem="YyR-cD-72w" secondAttribute="trailing" id="VsO-XD-mFC"/>
                             <constraint firstAttribute="trailing" secondItem="VlR-1f-WNy" secondAttribute="trailing" id="kCQ-6i-pmJ"/>
                             <constraint firstItem="VlR-1f-WNy" firstAttribute="leading" secondItem="03F-de-LK8" secondAttribute="leading" id="qjj-SL-xCJ"/>
                             <constraint firstItem="YyR-cD-72w" firstAttribute="leading" secondItem="03F-de-LK8" secondAttribute="leading" id="wWu-YO-0gp"/>
-                            <constraint firstItem="deA-zP-LP2" firstAttribute="top" secondItem="VlR-1f-WNy" secondAttribute="bottom" constant="66.666666666666629" id="yK5-6J-aOp"/>
                             <constraint firstItem="YyR-cD-72w" firstAttribute="top" secondItem="03F-de-LK8" secondAttribute="top" constant="62" id="zCk-oE-BKd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="03F-de-LK8"/>
                     </view>
                     <navigationItem key="navigationItem" id="ePZ-qp-Puk"/>
-                    <size key="freeformSize" width="414" height="1472"/>
                     <connections>
                         <outlet property="adjustedMMR" destination="eMB-NV-dil" id="YOv-i1-teU"/>
                         <outlet property="highRangeValue" destination="IJd-ew-lEo" id="7If-i7-D9Z"/>
