@@ -21,10 +21,6 @@ class InspectionViewController : UIViewController{
     
     var alertController: UIAlertController?
     
-    var carsTable: ViewController? //holds the viewcontroller that is connected to the
-                                   //list of uninspected cars.
-    
-
     @IBOutlet weak var commentsAlert: UIButton!
     
     //This is the popup that shows when you click the label button
@@ -215,8 +211,11 @@ class InspectionViewController : UIViewController{
             inspectionVC?.selectedCar = self.selectedCar
             inspectionVC?.checkList = self.checkList
             inspectionVC?.commentsList = self.commentsList
-
- }
+    }else if segue.destination is ViewController{
+        let firstVC = segue.destination as? ViewController
+        
+        firstVC?.firstPass = false
+        }
     
     }
     
@@ -245,6 +244,7 @@ class InspectionViewController : UIViewController{
         rating5.setImage(UIImage(systemName:"5.circle"), for: .normal)
         rating5.setImage(UIImage(systemName:"5.circle.fill"), for: .selected)
         rating5.addTarget(self, action: #selector(getter: self.rating5), for: UIControl.Event.touchUpInside)
+        
         
         
         }

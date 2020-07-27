@@ -13,38 +13,64 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //Properties
     var feedItems: NSMutableArray = NSMutableArray()
+    var firstPass : Bool
     var selectedCar : UncheckedCarsModel = UncheckedCarsModel()
-    let homeModel = HomeModel()
+    let homeModel: HomeModel?
     @IBOutlet weak var ListTableView: UITableView!
     var selectedRow: IndexPath = IndexPath()
     
     required init?(coder aDecoder: NSCoder) {
+        self.firstPass = true
+        self.homeModel = HomeModel()
+        print("in init method")
         super.init(coder: aDecoder)
-        //Set delegates and initialize home model
         
-        homeModel.delegate = self
-        homeModel.downloadItems()
+        
+        
+        //Set delegate
+        homeModel?.delegate = self
+        homeModel?.downloadItems()
         
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-         self.navigationController?.viewControllers = [self]
-//        homeModel.delegate = self
+     
+//        self.navigationController?.viewControllers = [self]
+
         self.ListTableView.delegate = self
         self.ListTableView.dataSource = self
-//      homeModel.getDownloadedItems()
+        self.ListTableView.reloadData()
+
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //Once the view appears, check if it is the first pass or not,
+        //if it is, remove the car that was just inspected from the list of cars
+        if(self.firstPass == false){
         
-        
+            print("removing row at: ", selectedRow.row)
+            feedItems.removeObject(at: selectedRow.row)
+            ListTableView.deleteRows(at: [selectedRow], with: .fade)
+            if(feedItems.count == 0){
+                
+                //TODO: make popup or display something when the table is empty
+            }
+            
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     
     func itemsDownloaded(items: NSMutableArray) {
         
         feedItems = items
-        self.ListTableView.reloadData()
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,7 +89,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Get references to labels of cell
         
         myCell.textLabel!.text = "\(item.year!) \(item.make!) \(item.model!)"
-       // myCell.layer.cornerRadius = 8
         
         return myCell
     }
@@ -96,7 +121,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             // Set the property to the selected location so when the view for
             // detail view controller loads, it can access that property to get the feeditem obj
             detailVC?.selectedCar = selectedCar
-            detailVC?.carsTable = self.presentingViewController as? ViewController
             detailVC?.selectedRow = selectedRow
         
 
@@ -107,19 +131,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //unwinder function that is called by the unwindToCars Segue
     @IBAction func unwinder( _ seg: UIStoryboardSegue) {
         
+        self.firstPass = false
+        
         //First remove all viewControllers that were created from the last car inspection
-//        self.navigationController?.viewControllers = [self]
-        
-        //Remove the inspected car from the feeditems NSArray and from the UItableView
-        print("removing row at: ", selectedRow.row)
-        feedItems.removeObject(at: selectedRow.row)
-        
-        if(feedItems.count == 0){
-            
-            //TODO: make popup or display something when the table is empty
-        }
-        
-        ListTableView.deleteRows(at: [selectedRow], with: .fade)
+        self.navigationController?.viewControllers = [self]
         
     }
 

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		253CDCA824B9EEB400CE55C6 /* sendtoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253CDCA724B9EEB400CE55C6 /* sendtoDB.swift */; };
+		25A6EC8224C0E844003DCEF2 /* PrimaryTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EC8124C0E844003DCEF2 /* PrimaryTabController.swift */; };
+		25A6EC8424C208BA003DCEF2 /* InspectionReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EC8324C208BA003DCEF2 /* InspectionReport.swift */; };
+		25A6EC8624C20919003DCEF2 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EC8524C20919003DCEF2 /* ReportModel.swift */; };
+		25A6EC8824C20D01003DCEF2 /* CheckedCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EC8724C20D00003DCEF2 /* CheckedCarsModel.swift */; };
+		25A6EC8A24C4C969003DCEF2 /* InspectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EC8924C4C969003DCEF2 /* InspectionDetailViewController.swift */; };
 		25EC9F2A24A809A800804672 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F2924A809A800804672 /* AppDelegate.swift */; };
 		25EC9F2C24A809A800804672 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F2B24A809A800804672 /* SceneDelegate.swift */; };
 		25EC9F2E24A809A800804672 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC9F2D24A809A800804672 /* ViewController.swift */; };
@@ -41,6 +46,11 @@
 
 /* Begin PBXFileReference section */
 		253CDCA724B9EEB400CE55C6 /* sendtoDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sendtoDB.swift; sourceTree = "<group>"; };
+		25A6EC8124C0E844003DCEF2 /* PrimaryTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTabController.swift; sourceTree = "<group>"; };
+		25A6EC8324C208BA003DCEF2 /* InspectionReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionReport.swift; sourceTree = "<group>"; };
+		25A6EC8524C20919003DCEF2 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
+		25A6EC8724C20D00003DCEF2 /* CheckedCarsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedCarsModel.swift; sourceTree = "<group>"; };
+		25A6EC8924C4C969003DCEF2 /* InspectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionDetailViewController.swift; sourceTree = "<group>"; };
 		25EC9F2624A809A800804672 /* AuctionReports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuctionReports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EC9F2924A809A800804672 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EC9F2B24A809A800804672 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +123,7 @@
 				25EC9F2B24A809A800804672 /* SceneDelegate.swift */,
 				25EC9F2D24A809A800804672 /* ViewController.swift */,
 				25EC9F2F24A809A800804672 /* Main.storyboard */,
+				25A6EC8124C0E844003DCEF2 /* PrimaryTabController.swift */,
 				25EC9F3224A809AC00804672 /* Assets.xcassets */,
 				25EC9F3424A809AC00804672 /* LaunchScreen.storyboard */,
 				25EC9F3724A809AC00804672 /* Info.plist */,
@@ -121,6 +132,10 @@
 				25EC9F5D24AA146C00804672 /* UncheckedCarsModel.swift */,
 				25EC9F5F24AA83E900804672 /* DetailViewController.swift */,
 				25EC9F6124AE4CBE00804672 /* InspectionViewController.swift */,
+				25A6EC8324C208BA003DCEF2 /* InspectionReport.swift */,
+				25A6EC8924C4C969003DCEF2 /* InspectionDetailViewController.swift */,
+				25A6EC8524C20919003DCEF2 /* ReportModel.swift */,
+				25A6EC8724C20D00003DCEF2 /* CheckedCarsModel.swift */,
 			);
 			path = AuctionReports;
 			sourceTree = "<group>";
@@ -276,12 +291,17 @@
 			files = (
 				25EC9F5E24AA146C00804672 /* UncheckedCarsModel.swift in Sources */,
 				25EC9F5C24AA141A00804672 /* HomeModel.swift in Sources */,
+				25A6EC8824C20D01003DCEF2 /* CheckedCarsModel.swift in Sources */,
+				25A6EC8A24C4C969003DCEF2 /* InspectionDetailViewController.swift in Sources */,
 				25EC9F2E24A809A800804672 /* ViewController.swift in Sources */,
+				25A6EC8224C0E844003DCEF2 /* PrimaryTabController.swift in Sources */,
 				25EC9F6024AA83E900804672 /* DetailViewController.swift in Sources */,
 				253CDCA824B9EEB400CE55C6 /* sendtoDB.swift in Sources */,
 				25EC9F2A24A809A800804672 /* AppDelegate.swift in Sources */,
+				25A6EC8624C20919003DCEF2 /* ReportModel.swift in Sources */,
 				25EC9F2C24A809A800804672 /* SceneDelegate.swift in Sources */,
 				25EC9F6224AE4CBE00804672 /* InspectionViewController.swift in Sources */,
+				25A6EC8424C208BA003DCEF2 /* InspectionReport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

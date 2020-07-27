@@ -15,7 +15,7 @@ class DetailViewController : UIViewController{
     var check_List : [Int:Int]?
     var comments_List : [Int:String]?
     var buttonColor: UIColor?
-    var carsTable: ViewController?
+   
    
     
     @IBOutlet weak var model: UILabel!
@@ -49,7 +49,6 @@ class DetailViewController : UIViewController{
                 inspectionVC?.selectedCar = selectedCar
                 inspectionVC?.commentsList = comments_List
                 inspectionVC?.checkList = check_List
-                inspectionVC?.carsTable = carsTable
                 inspectionVC?.selectedRow = selectedRow
                 
                 
