@@ -141,7 +141,6 @@ class ReportModel: NSObject, URLSessionDataDelegate {
             }
             
             
-            print("fuck you")
             DispatchQueue.main.async(execute: { () -> Void in
                 
                 self.delegate.itemsDownloaded(items: self.checkedCars)
