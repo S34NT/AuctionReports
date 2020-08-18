@@ -17,12 +17,6 @@ class sendtoDB:NSObject, URLSessionDelegate{
         var request = URLRequest(url: url! as URL)
         request.httpMethod = "POST"
         
-        for x in 1..<12{
-            
-            print("\(String(describing: checkList[x]!))" + "\(String(describing: commentsList[x]!))")
-            
-        }
-        
         var dataString = "secretWord=009u0x489a"
         
         dataString = dataString + "&make=\(selectedCar!.make!)"
