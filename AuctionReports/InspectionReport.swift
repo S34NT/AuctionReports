@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 
-
-
 class InspectionReport: UITableViewController, ReportModelProtocol{
     
    
@@ -42,7 +40,6 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("in numberOfRowsInSection")
         return 1
     }
     
@@ -60,6 +57,7 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
                myCell.textLabel!.text = "\(item.year!) \(item.make!) \(item.model!)"
                myCell.textLabel?.textAlignment = .center
                myCell.backgroundColor = .white
+               myCell.layer.borderWidth = 1
              
                return myCell
     }
@@ -86,12 +84,6 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
     }
     
     
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         
@@ -104,6 +96,11 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
         self.performSegue(withIdentifier: "inspectedDetailSegue", sender: self)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      
         if segue.destination is InspectionDetailViewController{
@@ -114,6 +111,7 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
             
            
             inspectedDetailVC?.inspectedCar = inspectedCar
+            
             
     
         
@@ -127,7 +125,7 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
       
         (sender as AnyObject).beginRefreshing()
         
-        var group = DispatchGroup()
+        let group = DispatchGroup()
         group.enter()
         self.reportItems.removeAllObjects()
         group.leave()
@@ -136,15 +134,9 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
         self.reportModel?.downloadItems()
         }
             
-     
-//            self.ReportTableView.delegate = self
-//            self.ReportTableView.dataSource = self
         
             (sender as AnyObject).endRefreshing()
-        
-//        viewWillAppear(true)
-        
-   
+    
     }
     
     
@@ -155,9 +147,6 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
     
     override func viewDidLoad() {
        super.viewDidLoad()
-//       self.ReportTableView.reloadData()
-        
-        
 
     }
     

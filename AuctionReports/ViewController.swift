@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     //Properties
+    let cellSpacingHeight: CGFloat = 5
     var feedItems: NSMutableArray = NSMutableArray()
     var firstPass : Bool
     var selectedCar : UncheckedCarsModel = UncheckedCarsModel()
@@ -24,23 +25,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.homeModel = HomeModel()
         print("in init method")
         super.init(coder: aDecoder)
-        
-        
+
         
         //Set delegate
         homeModel?.delegate = self
         homeModel?.downloadItems()
         
-        
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
      
-//        self.navigationController?.viewControllers = [self]
 
         self.ListTableView.delegate = self
         self.ListTableView.dataSource = self
+        self.ListTableView.backgroundColor = .yellow
         self.ListTableView.reloadData()
 
     }
@@ -51,9 +51,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //if it is, remove the car that was just inspected from the list of cars
         if(self.firstPass == false){
         
-            print("removing row at: ", selectedRow.row)
-            feedItems.removeObject(at: selectedRow.row)
-            ListTableView.deleteRows(at: [selectedRow], with: .fade)
+            print("removing row at: ", selectedRow.section)
+            feedItems.removeObject(at: selectedRow.section)
+            ListTableView.deleteSections([selectedRow.section], with: .fade)
             if(feedItems.count == 0){
                 
                 //TODO: make popup or display something when the table is empty
@@ -73,10 +73,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Return the number of feed items
-        return feedItems.count
-        
+    func numberOfSections(in tableView: UITableView) -> Int{
+        return self.feedItems.count
+    }
+    
+    func tableView(_ tableView: UITableView,
+    numberOfRowsInSection section: Int) -> Int{
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?{
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,22 +94,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cellIdentifier: String = "basicCell"
         let myCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
         // Get the cars to be shown
-        let item: UncheckedCarsModel = feedItems[indexPath.row] as! UncheckedCarsModel
+        let item: UncheckedCarsModel = feedItems[indexPath.section] as! UncheckedCarsModel
         // Get references to labels of cell
         
         myCell.textLabel!.text = "\(item.year!) \(item.make!) \(item.model!)"
         
+        myCell.textLabel!.textAlignment = .center
+        myCell.backgroundColor = .white
+        myCell.layer.cornerRadius = 8
+        myCell.layer.borderWidth = 1
+        
+        
+        
         return myCell
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt IndexPath: IndexPath) {
 
         
-        selectedRow = indexPath
+        selectedRow = IndexPath
         
         
-        selectedCar = feedItems[selectedRow.row] as! UncheckedCarsModel
+        selectedCar = feedItems[selectedRow.section] as! UncheckedCarsModel
       
         
         print("\(String(describing: selectedCar.make))")
