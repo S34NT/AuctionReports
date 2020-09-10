@@ -82,7 +82,7 @@ else
         }
         else
         {
-// display an alert if an error and database insert didn't worked (return != 1) inside the DispatchQueue.main.async
+// display an alert if an error and database insert didn't work (return != 1) inside the DispatchQueue.main.async
             DispatchQueue.main.async
             {
 

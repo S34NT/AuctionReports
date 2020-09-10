@@ -111,8 +111,6 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
             
            
             inspectedDetailVC?.inspectedCar = inspectedCar
-            
-            
     
         
 

@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cellSpacingHeight: CGFloat = 5
     var feedItems: NSMutableArray = NSMutableArray()
     var firstPass : Bool
+    var clearTable : Bool
     var selectedCar : UncheckedCarsModel = UncheckedCarsModel()
     let homeModel: HomeModel?
     @IBOutlet weak var ListTableView: UITableView!
@@ -22,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     required init?(coder aDecoder: NSCoder) {
         self.firstPass = true
+        self.clearTable = false
         self.homeModel = HomeModel()
         print("in init method")
         super.init(coder: aDecoder)
@@ -58,6 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 //TODO: make popup or display something when the table is empty
             }
             
+            
         }
     }
     
@@ -76,7 +79,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Set the numbe of sections equal to the number of cars
     //that were pulled from the server
     func numberOfSections(in tableView: UITableView) -> Int{
-        return self.feedItems.count
+        
+        if clearTable == true{
+            return 0
+        }else{
+            return self.feedItems.count
+        }
+        
     }
     
     //set number of rows for a section to 1
@@ -96,22 +105,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //This function defines the attributes of the reusable cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // Retrieve cell
-        let cellIdentifier: String = "basicCell"
-        let myCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
+        //After all of the prototype cells have been generated for each of the cars,
+        //create the delete list cell/button
+        if(indexPath.section == numberOfSections(in: tableView) - 1){
+    
+            let cellIdentifier: String = "listDelete"
+            let myCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
+            myCell.textLabel!.text = "Delete List"
+            myCell.textLabel!.textAlignment = .center
+            myCell.textLabel!.textColor = .white
+            myCell.backgroundColor = .red
+            myCell.layer.cornerRadius = 8
+            myCell.layer.borderWidth = 1
+            
+            return myCell
+            
+        }else{
+            
+            // Retrieve cell
+            let cellIdentifier: String = "basicCell"
+            let myCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
+            
+            // Get the cars to be shown
+            let item: UncheckedCarsModel = feedItems[indexPath.section] as! UncheckedCarsModel
+            
+            // Get references to labels of cell
+            myCell.textLabel!.text = "\(item.year!) \(item.make!) \(item.model!)"
+            
+            myCell.textLabel!.textAlignment = .center
+            myCell.backgroundColor = .white
+            myCell.layer.cornerRadius = 8
+            myCell.layer.borderWidth = 1
+            
+            return myCell
+            
+        }
         
-        // Get the cars to be shown
-        let item: UncheckedCarsModel = feedItems[indexPath.section] as! UncheckedCarsModel
-        
-        // Get references to labels of cell
-        myCell.textLabel!.text = "\(item.year!) \(item.make!) \(item.model!)"
-        
-        myCell.textLabel!.textAlignment = .center
-        myCell.backgroundColor = .white
-        myCell.layer.cornerRadius = 8
-        myCell.layer.borderWidth = 1
-        
-        return myCell
     }
     
     //Set the height of the header
@@ -120,17 +149,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     //This function controls what happens when users interact with the UITableView
-    func tableView(_ tableView: UITableView, didSelectRowAt IndexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        //When user selects a row, assign the value to selectedCar (UncheckedCarsModel Object)
-        selectedRow = IndexPath
-        selectedCar = feedItems[selectedRow.section] as! UncheckedCarsModel
-      
+        if(indexPath.section == feedItems.count - 1){
+            homeModel?.deleteListItems()
+            feedItems.removeAllObjects()
+            clearTable = true
+            self.viewDidLoad()
+            print("list should be gone")
+        }else{
+            //When user selects a row, assign the value to selectedCar (UncheckedCarsModel Object)
+              selectedRow = indexPath
+              selectedCar = feedItems[selectedRow.section] as! UncheckedCarsModel
+            
+              print("\(String(describing: selectedCar.make))")
+
+              //Perform a segue to the DetailViewController for the selected car
+              self.performSegue(withIdentifier: "detailSegue", sender: self)
+        }
         
-        print("\(String(describing: selectedCar.make))")
-
-        //Perform a segue to the DetailViewController for the selected car
-        self.performSegue(withIdentifier: "detailSegue", sender: self)
     }
     
    

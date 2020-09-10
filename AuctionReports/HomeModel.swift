@@ -27,6 +27,7 @@ class HomeModel: NSObject, URLSessionDataDelegate {
     
     func downloadItems() {
     
+    uncheckedCars.removeAllObjects()
     let url: URL = URL(string: urlPath)!
     let defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
     
@@ -57,8 +58,6 @@ class HomeModel: NSObject, URLSessionDataDelegate {
             
         }
         
-//        var jsonElement = NSDictionary()
-//        let uncheckedCars = NSMutableArray()
         
         for i in 0 ..< jsonResult.count
         {
@@ -123,12 +122,12 @@ class HomeModel: NSObject, URLSessionDataDelegate {
             
         }
         
-        
-        DispatchQueue.main.async(execute: { () -> Void in
-            
-            self.delegate.itemsDownloaded(items: self.uncheckedCars)
-            
-        })
+          getDownloadedItems()
+//        DispatchQueue.main.async(execute: { () -> Void in
+//
+//            self.delegate.itemsDownloaded(items: self.uncheckedCars)
+//
+//        })
     }
     
     func getDownloadedItems(){
@@ -138,5 +137,26 @@ class HomeModel: NSObject, URLSessionDataDelegate {
             self.delegate.itemsDownloaded(items: self.uncheckedCars)
             
         })
+    }
+    
+    func deleteListItems(){
+        
+        let urlPath: String = "https://www.wlgenerator.tech/DeleteUnchecked.php"
+        
+        let url: URL = URL(string: urlPath)!
+        let defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
+        
+        let task = defaultSession.dataTask(with: url) { (data, response, error) in
+            
+            if error != nil {
+                print("Failed to delete the list")
+            }else {
+                print("List removed")
+                print(data)
+            }
+            
+        }
+        
+        task.resume()
     }
 }
