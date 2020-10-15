@@ -50,10 +50,11 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
         // Retrieve cell
                let cellIdentifier: String = "basicCell2"
                let myCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        
                // Get the cars to be shown
                let item: CheckedCarsModel = reportItems[indexPath.section] as! CheckedCarsModel
+        
                // Get references to labels of cell
-               
                myCell.textLabel!.text = "\(item.year!) \(item.make!) \(item.model!)"
                myCell.textLabel?.textAlignment = .center
                myCell.backgroundColor = .white
@@ -74,13 +75,20 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
         return headerView
     }
     
+    //Remove the section containing the row that was selected from the tableview
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            reportItems.removeObject(at:indexPath.section)
+            tableView.deleteSections([indexPath.section],  with: .fade)
+            
+        }
+    }
+    
     func itemsDownloaded(items: NSMutableArray) {
         
         reportItems = items
         print("report items was set")
         self.viewDidAppear(true)
-        
- 
     }
     
     
@@ -132,9 +140,7 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
         self.reportModel?.downloadItems()
         }
             
-        
             (sender as AnyObject).endRefreshing()
-    
     }
     
     
@@ -147,7 +153,5 @@ class InspectionReport: UITableViewController, ReportModelProtocol{
        super.viewDidLoad()
 
     }
-    
-    
     
 }
